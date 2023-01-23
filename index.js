@@ -151,9 +151,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Running city Server");
+  res.send("Running Dipu Server");
 });
 
 app.listen(port, () => {
-  console.log("City server is running ");
+  console.log("Dipu server is running ");
 });
