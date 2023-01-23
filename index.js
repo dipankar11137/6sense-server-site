@@ -32,6 +32,9 @@ async function run() {
     const reviewCollection = client
       .db("city-electronics")
       .collection("add-review");
+    const taskUserCollection = client
+      .db("city-electronics")
+      .collection("task-user");
 
     // AUth JWT
     app.post("/login", async (req, res) => {
@@ -126,6 +129,18 @@ async function run() {
     app.get("/showReview", async (req, res) => {
       const query = {};
       const cursor = reviewCollection.find(query);
+      const review = await cursor.toArray();
+      res.send(review);
+    });
+    // Task 6sense
+    app.post("/addUser", async (req, res) => {
+      const newProduct = req.body;
+      const result = await taskUserCollection.insertOne(newProduct);
+      res.send(result);
+    });
+    app.get("/showUser", async (req, res) => {
+      const query = {};
+      const cursor = taskUserCollection.find(query);
       const review = await cursor.toArray();
       res.send(review);
     });
